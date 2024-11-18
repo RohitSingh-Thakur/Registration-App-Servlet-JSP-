@@ -12,7 +12,7 @@
 		Email: <input type="text" name="email" required="true" placeholder="Enter Email ID"> <br><br> 
 		Password: <input type="password" name="pass" required="true" placeholder="Enter Password"> <br><br> 
 		Gender: <input type="radio" name="gender1" value="Male"> Male 
-				<input type="radio" name="gender1" value=""> Female <br><br> 
+				<input type="radio" name="gender1" value="Female"> Female <br><br> 
 		City: 	<select name="city">
 					<option>Mumbai</option>
 					<option>Banglore</option>

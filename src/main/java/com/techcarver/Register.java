@@ -34,25 +34,29 @@ public class Register extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tc_data", "root",
 					"@Vaman88");
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into register values (?,?,?,?,?)");
-			preparedStatement.setString(1, userName);
-			preparedStatement.setString(2, email);
-			preparedStatement.setString(3, pass);
-			preparedStatement.setString(4, gender);
-			preparedStatement.setString(5, city);
+//			PreparedStatement preparedStatement = connection
+//					.prepareStatement("insert into register values (?,?,?,?,?)");
+//			preparedStatement.setString(1, userName);
+//			preparedStatement.setString(2, email);
+//			preparedStatement.setString(3, pass);
+//			preparedStatement.setString(4, gender);
+//			preparedStatement.setString(5, city);
+			
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO register (name,email, password, gender, city) VALUES ('"+userName+"', '"+email+"', '"+pass+"', '"+gender+"', '"+city+"')");
 
 			int count = preparedStatement.executeUpdate();
 			if (count > 0) {
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.print("<h3 style='color:green'> User Registerd... </h3>");
+				out.print("<script> alert('record saved ')</script>");
 				RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
 				rd.include(request, response);
 			} else {
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.print("<h3 style='color:red'> User Not Registerd... </h3>");
+				out.print("<script> alert('record not saved ')</script>");
 				RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
 				rd.include(request, response);
 			}
@@ -62,6 +66,7 @@ public class Register extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			out.print("<h3 style='color:red'> User Not Registerd... </h3>");
+			out.print("<script> alert('record not saved ')</script>");
 			RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
 			rd.include(request, response);
 		}
